@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ComputerStores.xsd">
+    <!--I used https://www.laptopsdirect.ie/ as a source for the data that populates my database-->
+    <Product Code="111-11">
+        <Category>HP Laptops</Category>
+        <Name>HP250 G8 2E9H9EA</Name>
+        <Description>Core i5-1035G1 8GB 256GB SSD 15.6 Inch Windows 10 Pro Laptop</Description>
+        <Quantity>27</Quantity>
+        <Unit_Price>780.97</Unit_Price>
+    </Product>
+    <Product Code="112-12">
+        <Category>HP Laptops</Category>
+        <Name>HP250 G8 2E9J1EA</Name>
+        <Description>Core i7-1065G7 8GB 256GB SSD 15.6 Inch Windows 10 Pro Laptop</Description>
+        <Quantity>10</Quantity>
+        <Unit_Price>1015.97</Unit_Price>
+    </Product>
+    <Product Code="222-11">
+        <Category>Asus Laptops</Category>
+        <Name>Asus TUF Dash F15 FX506HM-HN014T</Name>
+        <Description>Core i7-11800H 16GB 1TB SSD 15.6 RTX 3060 Windows 10 Gaming Laptop</Description>
+        <Quantity>4</Quantity>
+        <Unit_Price>1731.97</Unit_Price>
+    </Product>
+    <Product Code="223-12">
+        <Category>Asus Laptops</Category>
+        <Name>Asus Vivobook S513EA-BN697T</Name>
+        <Description>Core i5-1135G7 16GB 512GB SSD 15.6 Inch Windows 10 Laptop</Description>
+        <Quantity>16</Quantity>
+        <Unit_Price>830.97</Unit_Price>
+    </Product>
+    <Product Code="333-11">
+        <Category>Lenovo Desktops</Category>
+        <Name>Lenovo V50s 07IMB 11EF0015UK</Name>
+        <Description>Core i5-10400 8GB 256GB SSD Windows 10 Pro Desktop PC</Description>
+        <Quantity>32</Quantity>
+        <Unit_Price>582.97</Unit_Price>
+    </Product>
+    <Product Code="334-12">
+        <Category>Lenovo Desktops</Category>
+        <Name>Lenovo V35s 07ADA 11HF001XUK</Name>
+        <Description>Ryzen 5 3500U 16GB 512GB SSD DVD-RW Windows 10 Pro Desktop PC</Description>
+        <Quantity>13</Quantity>
+        <Unit_Price>557.97</Unit_Price>
+    </Product>
+    <Product Code="444-11">
+        <Category>DELL Desktops</Category>
+        <Name>DELL OptiPlex 3080 SFF WR1J6</Name>
+        <Description>Core i5-10500 8GB 256GB SSD Windows 10 Pro Desktop PC</Description>
+        <Quantity>41</Quantity>
+        <Unit_Price>682.97</Unit_Price>
+    </Product>
+    <Product Code="445-12">
+        <Category>DELL Desktops</Category>
+        <Name>DELL Vostro 3681 N46F1</Name>
+        <Description>Core i5-10400 8GB 256GB SSD Windows 10 Pro Desktop PC</Description>
+        <Quantity>24</Quantity>
+        <Unit_Price>607.97</Unit_Price>
+    </Product>
+    <Product Code="555-11">
+        <Category>HP Desktops</Category>
+        <Name>HP 200 SFF 261U1ES</Name>
+        <Description>Core i5-10400 16GB 256GB SSD Windows 10 Desktop PC</Description>
+        <Quantity>12</Quantity>
+        <Unit_Price>619.97</Unit_Price>
+    </Product>
+    <Product Code="556-12">
+        <Category>HP Desktops</Category>
+        <Name>HP 290 G3 SFF 261T9ES</Name>
+        <Description>Core i3-10100 8GB 256GB SSD Windows 10 Desktop PC</Description>
+        <Quantity>39</Quantity>
+        <Unit_Price>496.97</Unit_Price>
+    </Product>
+</Products>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<title>Marks Computer Store</title>
+<link href="style.css" rel="stylesheet">
+
+<body>
+    <h3 class="navbar">
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./search.html">Search</a></li>
+        </ul>
+    </h3>
+
+    <!--search bar for entering product code-->
+    <input type="text" placeholder="Enter a Products Code..." id="searchInput">
+
+    <!--button that when clicked retrieves the data from my xml database-->
+    <button type="button" id="loadButton" onclick="loadData('ComputerStore.xml')">Search</button>
+
+    <!--table that will display data-->
+    <table id="results" class="searchTable"></table>
+
+
+    <!--adapted from todos.xml example from moodle-->
+    <script>
+        async function loadData() {
+            var codeFound = false; //boolean that starts off false
+            var response = await fetch('ComputerStore.xml'); //response that will wait until my xml database is fetched
+            var parsedData = await response.text(); //will await the fetching of the database and return a string
+            var parser = new DOMParser(); //calling in the DOMParser
+            var data = parser.parseFromString(parsedData, "text/xml"); //parses the xml source code from a string to a DOM document
+            var results = "<tr><th>Code</th><th>Category</th><th>Name</th><th>Description</th><th>Quantity</th><th>Unit_Price</th></tr>"; //creating the table headers for my table
+            var sInput = document.getElementById("searchInput").value; //assigning my search bar to a variable sInput, .value will check for the value in the search bar
+            var a = data.getElementsByTagName("Product");//this will get my parsed XML data and get all the elements with a Product ancestor
+
+            for (var i = 0; i < a.length; i++) {//creates a variable i that starts at index 0, then will work its way through every Product index
+                var code = a[i].getAttribute('Code');//this variable will get the Product tag and then get the Code attribute associated to the element Product
+
+                if (sInput === code) {//if the user inputs a value that is the same as a code in the XML database,
+                    codeFound = true;//false boolean will change to true
+
+                    results += "<tr><td>"//program will now populate table
+                        + code + "</td><td>"//gets the code attribute
+                        + a[i].getElementsByTagName("Category")[0].childNodes[0].nodeValue + "</td><td>"//gets the category element
+                        + a[i].getElementsByTagName("Name")[0].childNodes[0].nodeValue + "</td><td>"//gets the name element
+                        + a[i].getElementsByTagName("Description")[0].childNodes[0].nodeValue + "</td><td>"//gets the description element
+                        + a[i].getElementsByTagName("Quantity")[0].childNodes[0].nodeValue + "</td><td>"//gets the quantity element
+                        + a[i].getElementsByTagName("Unit_Price")[0].childNodes[0].nodeValue + "</td></tr>";//gets the unit price element and closes the table
+                }
+            }
+
+            if (codeFound === false) {//if a user enters anything that doesn't equal a code found in the xml database, or leaves the search bar blank, rthe codeFound boolean will stay set to false
+                alert("That was not a valid code!");//if this is the case, the website will open an alert window and tell the user they entered an invalid code
+            }
+            document.getElementById("results").innerHTML = results;//after everything has been run through, creates the table to display data
+        }
+    </script>
+
+    <footer>
+        <p>© Mark Cummins<br>
+            x20400634@student.ncirl.ie</p>
+    </footer>
+
+</body>
+
+</html>

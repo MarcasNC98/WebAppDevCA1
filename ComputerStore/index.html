@@ -1,0 +1,57 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marks Computer Store</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <h3 class="navbar">
+    <ul>
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./search.html">Search</a></li>
+    </ul>
+  </h3>
+
+  <!--button that when clicked loads in my xml database-->
+  <button id="loadtable" type="button" onclick="loadData('ComputerStore.xml')">Click to Display Product Data</button>
+  <br><br>
+  <!--table that will display the data from the xml file-->
+  <table id="productTable"></table>
+
+  <!--Code to display XML as a HTML table adapted from ajax-xml-other-example on Moodle-->
+  <script>
+    async function loadData() {
+      var response = await fetch('ComputerStore.xml') //response that awaits the fetching of the xml database
+      var textContent = await response.text() //awaits the fetching of the database and return it as a string
+      var data = new window.DOMParser().parseFromString(textContent, "text/xml") //calls in the DOM parser, and then parses the xml code from a string to a DOM document
+      var table = "<tr><th>Code</th><th>Name</th><th>Quantity</th><th>Unit_Price</th></tr>"; //creates the headings for the table
+
+      var x = data.getElementsByTagName("Product"); //this will get my parsed XML data and get all the elements with a Product ancestor
+      for (i = 0; i < x.length; i++) { //creates a variable i that starts at index 0, then will work its way through every Product index
+        table += "<tr><td>" + //program will now populate table
+          x[i].getAttribute('Code') + //gets the code attribute
+          "</td><td>" +
+          x[i].getElementsByTagName("Name")[0].childNodes[0].nodeValue + //gets the name element
+          "</td><td>" +
+          x[i].getElementsByTagName("Quantity")[0].childNodes[0].nodeValue + //gets the quantity element
+          "</td><td>" +
+          x[i].getElementsByTagName("Unit_Price")[0].childNodes[0].nodeValue + //gets the unit price element and closes the table
+          "</td></tr>";
+      }
+
+      document.getElementById("productTable").innerHTML = table; //after everything has been run through, creates the table to display data
+    }
+  </script>
+
+  <footer>
+    <p>© Mark Cummins<br>
+      x20400634@student.ncirl.ie</p>
+  </footer>
+
+</body>
+
+</html>

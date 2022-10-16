@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Weather Data</title>
+  <script src="https://cdn.jsdelivr.net/npm/xmltojson@1.3.5/lib/xmlToJSON.min.js"></script>
+</head>
+<link rel="stylesheet" href="styles.css">
+
+<body>
+  <h3 class="navbar">
+    <ul>
+      <li><a href="./weather.html">Home</a></li>
+    </ul>
+  </h3>
+
+  <h1 id="wHeader">Weather Data</h1>
+
+  <!--adapted from ajax-json-fetch-external-api from moodle-->
+
+  <!--form that uses the GET method-->
+  <form action="getWeatherData" id="apiLink" method="GET">
+
+    <!--search box where you enter the citys name-->
+    <input type="text" placeholder="Enter a City's Name..." id='userSearch' />
+
+    <!--table that will display the results-->
+    <table id="results" class="wtable"></table>
+
+    <!--button that will retrieve the openweathermap url when clicked-->
+    <button id="getwInfo" type="button"
+      onclick="loadData('http://api.openweathermap.org/data/2.5/weather?q=')">Search</button>
+
+    <script>
+      async function loadData(url) { //this will load the openweathermap url specified above
+        var a = document.getElementById('userSearch').value //assigning the search box value to a variable 'a'
+        var x = url + a + "&units=metric&APPID=03079c56839397b4e8a03a27cc112a2b"; //assigns the openweathermap url + search box value + my API key. I wanted the data to display in metic, so I added "&units=metric"
+
+        var response = await fetch(x); //response that will await the fetch my new url 'x'
+        var data = await response.json(); //this will assign the urls json information to a variable called 'data'
+
+        var results = "<tr><th>Country</th><th>City</th><th>Weather</th><th>Description</th><th>Temperature (Celcius)</th><th>Humidity %</th><th>Wind (KPH)</th></tr>"; //creates the table headers for my table
+
+        if (data["cod"] === "404") { //wasn't required, but I decided to add functionality to alert a user if they entered an invalid city name. This is calculated based off the "[cod]" index in openweathermap when you enter an invalid city name
+          alert("Invalid City Name!"); //alert box content
+        }
+        else { //if the user enters a valid city name, program will run as normal
+          results += "<tr><td>" //program starts to populate the table
+            + data["sys"]["country"] + "</td><td>" //will get the json response from openweathermap, then display the result of indexes sys and country
+            + data["name"] + "</td><td>" //displays city name
+            + data["weather"][0]["main"] + "</td><td>" //displays weather
+            + data["weather"][0]["description"] + "</td><td>" //displays a more detailed weather description, such as scattered clouds etc.
+            + data["main"]["feels_like"] + "</td><td>" //displays the real feel temperature
+            + data["main"]["humidity"] + "</td><td>" //displays the humidity percentage
+            + data["wind"]["speed"] + "</td></tr>"; //displays the wind speed in KPH and ends the table
+          document.getElementById("results").innerHTML = results; //after the program is done, creates the table and displays all the data
+        }
+      }
+    </script>
+  </form>
+
+  <footer>
+    <p>© Mark Cummins<br>
+      x20400634@student.ncirl.ie</p>
+  </footer>
+
+</body>
+
+</html>

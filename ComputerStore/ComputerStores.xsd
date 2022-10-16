@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+<!--simple elements-->
+<xsd:element name="Category" type="xsd:string"/>
+<xsd:element name="Name" type="xsd:string"/>
+<xsd:element name="Description" type="xsd:string"/>
+<xsd:element name="Quantity" type="xsd:positiveInteger"/>
+<xsd:element name="Unit_Price">
+    <xsd:simpleType>
+        <xsd:restriction base="xsd:decimal">
+            <xsd:minExclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:element>
+
+<!--attributes-->
+<xsd:attribute name="Code" type="xsd:string"/>
+
+<!--complex elements-->
+<xsd:element name="Products">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name="Product" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="Category"/>
+                        <xsd:element ref="Name"/>
+                        <xsd:element ref="Description"/>
+                        <xsd:element ref="Quantity"/>
+                        <xsd:element ref="Unit_Price"/>
+                    </xsd:sequence>
+                    <xsd:attribute ref="Code" use="optional"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:element>
+
+</xsd:schema>
